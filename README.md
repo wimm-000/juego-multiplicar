@@ -103,13 +103,13 @@ multiplicar-app/
 - [x] **FASE 11**: Pantalla de Resultados
 - [x] **FASE 12**: Repetir Errores
 - [x] **FASE 13**: Perfil y Estadísticas (con resetear)
-- [ ] **FASE 14**: PWA Configuration
+- [x] **FASE 14**: PWA Configuration y Modo Offline
 - [ ] **FASE 15**: Responsive y Optimización
 - [ ] **FASE 16**: Testing y Refinamiento
 
 ## Estado Actual
 
-**FASE 13 COMPLETADA** - Aplicación funcional con:
+**FASE 14 COMPLETADA** - Aplicación PWA completa con modo offline:
 
 ### Funcionalidades Implementadas
 
@@ -146,6 +146,17 @@ multiplicar-app/
 - Tabla más difícil calculada
 - **Botón para resetear todas las estadísticas**
 - Diálogo de confirmación con diseño brutalista
+
+✅ **PWA y Modo Offline** 🆕
+- **App instalable** en desktop y móvil
+- **Service Worker** con estrategias de cache optimizadas
+- **Modo offline completo** - Estudiar y Jugar funcionan sin conexión
+- **Indicador de estado** - Notificación visual online/offline
+- **Página offline** personalizada con instrucciones
+- **Iconos PWA** en múltiples tamaños (72px - 512px)
+- **Shortcuts de app** - Acceso rápido a Jugar, Estudiar, Perfil
+- Cache inteligente: CacheFirst para fuentes, StaleWhileRevalidate para assets
+- Ver `PWA_TESTING.md` para guía completa de testing
 
 ### Base de Datos
 
