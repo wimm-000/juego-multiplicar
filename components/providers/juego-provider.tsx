@@ -76,6 +76,10 @@ export function JuegoProvider({ children }: { children: ReactNode }) {
 
   // Iniciar juego con preguntas específicas (para repetir errores)
   const iniciarJuegoConPreguntas = useCallback((config: ConfiguracionJuego, preguntas: Pregunta[]) => {
+    console.log('🎮 iniciarJuegoConPreguntas llamado');
+    console.log('  - Config:', config);
+    console.log('  - Preguntas:', preguntas.length);
+    
     setConfiguracion(config);
     setEstado({
       preguntas,
@@ -87,6 +91,8 @@ export function JuegoProvider({ children }: { children: ReactNode }) {
       feedback: null,
       juegoTerminado: false,
     });
+    
+    console.log('✅ Estado y configuración actualizados');
   }, []);
 
   // Agregar dígito a la respuesta actual
@@ -232,9 +238,8 @@ export function JuegoProvider({ children }: { children: ReactNode }) {
       // Si no hay respuestas, no es incorrecta
       if (respuestas.length === 0) return false;
       
-      // Es incorrecta si la última respuesta fue incorrecta
-      const ultimaRespuesta = respuestas[respuestas.length - 1];
-      return !ultimaRespuesta.esCorrecto;
+      // Es incorrecta si tiene al menos UNA respuesta incorrecta
+      return respuestas.some((r) => !r.esCorrecto);
     });
   }, [estado]);
 

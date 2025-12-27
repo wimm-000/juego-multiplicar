@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useJuego } from '@/components/providers/juego-provider';
+import { useJuego, type ConfiguracionJuego } from '@/components/providers/juego-provider';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -47,17 +47,25 @@ export default function ResultadoPage() {
   const handleRepetirErrores = () => {
     if (preguntasFalladas.length === 0 || !configuracion) return;
 
-    // Crear nueva configuración manteniendo vidas originales
-    const nuevaConfig = {
-      ...configuracion,
+    // Crear nueva configuración manteniendo TODAS las propiedades originales
+    const nuevaConfig: ConfiguracionJuego = {
+      tablas: configuracion.tablas,
       numeroPreguntas: preguntasFalladas.length,
+      vidasActivadas: configuracion.vidasActivadas,
+      numeroVidas: configuracion.numeroVidas,
     };
+
+    console.log('🔄 Repetir errores - Config original:', configuracion);
+    console.log('🔄 Repetir errores - Nueva config:', nuevaConfig);
+    console.log('🔄 Preguntas a repetir:', preguntasFalladas.length);
 
     // Iniciar juego con solo las preguntas incorrectas
     iniciarJuegoConPreguntas(nuevaConfig, preguntasFalladas);
 
-    // Redirigir a partida
-    router.push('/jugar/partida');
+    // Pequeño delay para asegurar que el estado se actualice antes de la navegación
+    setTimeout(() => {
+      router.push('/jugar/partida');
+    }, 100);
   };
 
   return (
@@ -122,7 +130,7 @@ export default function ResultadoPage() {
             disabled={preguntasFalladas.length === 0}
             className="w-full brutal-border brutal-shadow bg-rojo text-blanco p-4 font-bold text-lg uppercase hover:translate-x-1 hover:translate-y-1 hover:shadow-brutal-sm active:translate-x-2 active:translate-y-2 active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
           >
-            🔄 REPETIR ERRORES ({fallos})
+            🔄 REPETIR ERRORES ({preguntasFalladas.length} {preguntasFalladas.length === 1 ? 'PREGUNTA' : 'PREGUNTAS'})
           </button>
 
           <Link
