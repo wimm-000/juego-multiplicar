@@ -111,6 +111,37 @@ export default function PartidaPage() {
     return () => clearInterval(interval);
   }, [estado, obtenerEstadisticas]);
 
+  // Soporte de teclado físico
+  useEffect(() => {
+    if (!estado || estado.juegoTerminado || estado.feedback) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Prevenir comportamiento por defecto para teclas que vamos a usar
+      if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'Backspace', 'Enter'].includes(e.key)) {
+        e.preventDefault();
+      }
+
+      // Números 0-9
+      if (e.key >= '0' && e.key <= '9') {
+        agregarDigito(parseInt(e.key));
+      }
+      // Backspace para borrar
+      else if (e.key === 'Backspace') {
+        borrarDigito();
+      }
+      // Enter para confirmar
+      else if (e.key === 'Enter') {
+        confirmarRespuesta();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [estado, agregarDigito, borrarDigito, confirmarRespuesta]);
+
   if (!configuracion || !estado) {
     return null; // O un loader
   }
@@ -174,6 +205,11 @@ export default function PartidaPage() {
           onConfirm={confirmarRespuesta}
           disabled={estado.feedback !== null}
         />
+        
+        {/* Hint de teclado físico */}
+        <div className="text-sm opacity-50 text-center font-mono">
+          💡 Usa el teclado: 0-9 • Backspace • Enter
+        </div>
       </div>
 
       {/* Mensaje de fin de juego */}
