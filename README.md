@@ -160,10 +160,17 @@ multiplicar-app/
 
 ### Fixes Recientes
 
-✅ Bug de conteo de errores corregido:
+✅ **Bug de conteo de errores corregido** (Commit: fa40370):
 - Ahora se guardan TODOS los intentos (no solo el último)
 - La página de resultados muestra cada error individual
 - Las estadísticas cuentan correctamente todos los fallos
+- Lista de errores muestra todas las respuestas incorrectas con contador "(X intentos)"
+
+✅ **Funcionalidad "Repetir Errores" corregida** (Commit: fa40370):
+- Mantiene correctamente el número de vidas de la partida original
+- Incluye todas las preguntas que tuvieron al menos un fallo
+- Muestra el número correcto de preguntas únicas a repetir
+- Arreglo de race conditions en navegación entre páginas
 
 ## Próximas Funcionalidades
 
