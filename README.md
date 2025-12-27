@@ -128,6 +128,7 @@ multiplicar-app/
 - Configuración de partida (tablas, preguntas, vidas)
 - Sistema de vidas opcional
 - Teclado numérico interactivo
+- **Soporte de teclado físico** (0-9, Backspace, Enter)
 - Animaciones GSAP para feedback
 - Timer en tiempo real
 - **Sistema de múltiples intentos por pregunta**
@@ -172,12 +173,23 @@ multiplicar-app/
 - Muestra el número correcto de preguntas únicas a repetir
 - Arreglo de race conditions en navegación entre páginas
 
+✅ **Animación de botones numéricos corregida** (Commit: 74cbc85):
+- Botones escalan correctamente después de ser pulsados
+- Removido conflicto entre animaciones GSAP y transiciones CSS
+- Animación elástica suave y fluida
+
+✅ **Soporte de teclado físico** (Commit: 15d23da):
+- Teclas 0-9 para ingresar números
+- Backspace para borrar dígitos
+- Enter para confirmar respuesta
+- Hint visual en pantalla de juego
+
 ## Próximas Funcionalidades
 
-- Soporte para teclado físico (0-9, Backspace, Enter)
 - Configuración PWA completa para uso offline
 - Más modos de juego (contra reloj, modo perfecto, etc.)
 - Mejoras de accesibilidad
+- Gráficas de progreso y estadísticas avanzadas
 
 ## Desarrollo
 
