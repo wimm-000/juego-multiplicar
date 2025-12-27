@@ -1,6 +1,5 @@
 'use client';
 
-import { useRef } from 'react';
 import { gsap } from 'gsap';
 
 interface TecladoNumericoProps {
@@ -27,21 +26,25 @@ export default function TecladoNumerico({
     // Cancelar cualquier animación previa en este botón
     gsap.killTweensOf(button);
     
-    // Asegurar que esté en escala 1 antes de animar
-    gsap.set(button, { scale: 1 });
+    // Resetear transformaciones antes de animar
+    gsap.set(button, { 
+      scale: 1,
+      x: 0,
+      y: 0
+    });
     
-    // Animación de "pop"
-    gsap.to(button, {
-      scale: 0.9,
-      duration: 0.1,
-      ease: 'power2.out',
-      onComplete: () => {
-        gsap.to(button, {
-          scale: 1,
-          duration: 0.2,
-          ease: 'elastic.out',
-        });
-      },
+    // Animación de "pop" mejorada
+    const tl = gsap.timeline();
+    
+    tl.to(button, {
+      scale: 0.85,
+      duration: 0.08,
+      ease: 'power2.in',
+    })
+    .to(button, {
+      scale: 1,
+      duration: 0.3,
+      ease: 'elastic.out(1, 0.5)',
     });
 
     callback();
@@ -56,7 +59,7 @@ export default function TecladoNumerico({
             key={num}
             onClick={(e) => handleButtonClick(e, () => onNumberClick(num))}
             disabled={disabled}
-            className="brutal-border brutal-shadow bg-blanco hover:bg-papel p-6 font-bold text-3xl hover:translate-x-1 hover:translate-y-1 hover:shadow-brutal-sm active:translate-x-2 active:translate-y-2 active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+            className="brutal-border brutal-shadow bg-blanco hover:bg-papel p-6 font-bold text-3xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {num}
           </button>
@@ -68,7 +71,7 @@ export default function TecladoNumerico({
         <button
           onClick={(e) => handleButtonClick(e, onBackspace)}
           disabled={disabled}
-          className="brutal-border brutal-shadow bg-rojo text-blanco hover:bg-rojo/90 p-6 font-bold text-2xl hover:translate-x-1 hover:translate-y-1 hover:shadow-brutal-sm active:translate-x-2 active:translate-y-2 active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+          className="brutal-border brutal-shadow bg-rojo text-blanco hover:bg-rojo/90 p-6 font-bold text-2xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Borrar"
         >
           ←
@@ -77,7 +80,7 @@ export default function TecladoNumerico({
         <button
           onClick={(e) => handleButtonClick(e, () => onNumberClick(0))}
           disabled={disabled}
-          className="brutal-border brutal-shadow bg-blanco hover:bg-papel p-6 font-bold text-3xl hover:translate-x-1 hover:translate-y-1 hover:shadow-brutal-sm active:translate-x-2 active:translate-y-2 active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+          className="brutal-border brutal-shadow bg-blanco hover:bg-papel p-6 font-bold text-3xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           0
         </button>
@@ -85,7 +88,7 @@ export default function TecladoNumerico({
         <button
           onClick={(e) => handleButtonClick(e, onConfirm)}
           disabled={disabled}
-          className="brutal-border brutal-shadow bg-amarillo hover:bg-amarillo/90 p-6 font-bold text-2xl hover:translate-x-1 hover:translate-y-1 hover:shadow-brutal-sm active:translate-x-2 active:translate-y-2 active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+          className="brutal-border brutal-shadow bg-amarillo hover:bg-amarillo/90 p-6 font-bold text-2xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           aria-label="Confirmar"
         >
           ✓
