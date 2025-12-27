@@ -55,10 +55,6 @@ export default function ResultadoPage() {
       numeroVidas: configuracion.numeroVidas,
     };
 
-    console.log('🔄 Repetir errores - Config original:', configuracion);
-    console.log('🔄 Repetir errores - Nueva config:', nuevaConfig);
-    console.log('🔄 Preguntas a repetir:', preguntasFalladas.length);
-
     // Iniciar juego con solo las preguntas incorrectas
     iniciarJuegoConPreguntas(nuevaConfig, preguntasFalladas);
 

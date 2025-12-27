@@ -76,10 +76,6 @@ export function JuegoProvider({ children }: { children: ReactNode }) {
 
   // Iniciar juego con preguntas específicas (para repetir errores)
   const iniciarJuegoConPreguntas = useCallback((config: ConfiguracionJuego, preguntas: Pregunta[]) => {
-    console.log('🎮 iniciarJuegoConPreguntas llamado');
-    console.log('  - Config:', config);
-    console.log('  - Preguntas:', preguntas.length);
-    
     setConfiguracion(config);
     setEstado({
       preguntas,
@@ -91,8 +87,6 @@ export function JuegoProvider({ children }: { children: ReactNode }) {
       feedback: null,
       juegoTerminado: false,
     });
-    
-    console.log('✅ Estado y configuración actualizados');
   }, []);
 
   // Agregar dígito a la respuesta actual

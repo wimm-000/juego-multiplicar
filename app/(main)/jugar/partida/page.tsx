@@ -23,15 +23,9 @@ export default function PartidaPage() {
 
   // Redirigir si no hay juego iniciado (con pequeño delay para evitar race conditions)
   useEffect(() => {
-    console.log('🔍 Efecto de partida - configuracion:', configuracion ? 'existe' : 'null');
-    console.log('🔍 Efecto de partida - estado:', estado ? 'existe' : 'null');
-    
     const timer = setTimeout(() => {
       if (!configuracion || !estado) {
-        console.log('⚠️ No hay configuración o estado después de delay, redirigiendo a /jugar');
         router.push('/jugar');
-      } else {
-        console.log('✅ Configuración y estado presentes, partida OK');
       }
     }, 50);
 
