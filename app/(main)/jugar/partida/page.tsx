@@ -152,6 +152,14 @@ export default function PartidaPage() {
       {/* Header con progreso, vidas y tiempo */}
       <div className="brutal-border brutal-shadow bg-blanco p-4 mb-6">
         <div className="flex justify-between items-center flex-wrap gap-4">
+          {/* Back button */}
+          <button
+            onClick={() => router.push('/jugar')}
+            className="brutal-border bg-papel px-4 py-2 font-bold hover:bg-negro hover:text-blanco transition-colors flex gap-2"
+          >
+            VOLVER
+          </button>
+
           {/* Progreso */}
           <div className="font-bold text-lg">
             PREGUNTA {progreso}
